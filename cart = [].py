@@ -26,24 +26,24 @@ items = [
 }
 ]
 total = 0
-print("Would you like to get anything:")
-for index, item in enumerate(items):
-    print(index, ":" , item["name"])
-user_input = input("Would you like to get any of these devices? Enter its number in the x variable section")
-x = 0
-user_input = input(f"Are you sure you would like to get {items[x]["name"]}.")
-if user_input == "yes":
-    print(f"Great! Your total will be {items[x]["price"]} dollars.")
-    total += items[x]["price"]
-    user_input = input("Would you like to see the description and department?")
+while True:
+    for index, item in enumerate(items):
+        print(index, ":" , item["name"])
+    user_input = input("Would you like to purchase anything? If you would like to checkout, type 'exit'")
+    if user_input == "exit":
+        user_input = input(f"Alright! Your total is ${total} Will you be paying with cash or card?")
+        if user_input == "cash":
+            print("Okay, pay up here.")
+            total = 0
+        elif user_input == "card":
+            print("Okay, scan over here.")
+            total = 0
+        break
+    x = int(user_input)
+    user_input = input(f"Are you sure you would like to get {items[x]['name']}.")
     if user_input == "yes":
-        print(f"This item is part of the {items[x]["department"]} department, the description is shown as the following: {items[x]["description"]}")
-user_input = input("Would you like to continue shopping?")
-if user_input == "no":
-    user_input == input(f"Alright! Your total is ${total} Will you be paying with cash or card?")
-    if user_input == "cash":
-        print("Okay, pay up here.")
-        total = 0
-    elif user_input == "card":
-        print("Okay, scan over here.")
-        total = 0
+        print(f"Great! Your total will be {items[x]['price']} dollars.")
+        total += items[x]["price"]
+        user_input = input("Would you like to see the description and department?")
+        if user_input == "yes":
+            print(f"This item is part of the {items[x]['department']} department, the description is shown as the following: {items[x]['description']}")
